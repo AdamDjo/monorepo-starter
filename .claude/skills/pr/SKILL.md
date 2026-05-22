@@ -1,16 +1,16 @@
 ---
 name: pr
-description: Pousse la branche courante et ouvre une PR vers la bonne cible. Extrait le numéro d'issue du nom de branche automatiquement.
+description: Pushes the current branch and opens a PR toward the correct target. Extracts the issue number from the branch name automatically.
 allowed-tools: Bash, mcp__github__create_pull_request
 ---
 
-L'utilisateur veut pousser sa branche courante et ouvrir une PR.
+The user wants to push their current branch and open a PR.
 
-Lire `docs/MEMORY.md` pour récupérer owner et repo.
+Read `docs/MEMORY.md` to get owner and repo.
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Récupérer le contexte**
+1. **Gather context**
 
    ```bash
    git rev-parse --abbrev-ref HEAD
@@ -18,58 +18,58 @@ Exécuter dans l'ordre :
    git status --short
    ```
 
-2. **Vérifier qu'il n'y a pas de fichiers non commités**
+2. **Check for uncommitted files** — if any, warn the user before continuing
 
-3. **Déterminer la branche cible selon le préfixe :**
-   - `feature/*` → cible : `develop`
-   - `fix/*` → cible : `develop`
-   - `chore/*` → cible : `develop`
-   - `hotfix/*` → cible : `main`
-   - `release/*` → cible : `main`
+3. **Determine target branch by prefix:**
+   - `feature/*` → target: `develop`
+   - `fix/*` → target: `develop`
+   - `chore/*` → target: `develop`
+   - `hotfix/*` → target: `main`
+   - `release/*` → target: `main`
 
-4. **Extraire le numéro d'issue du nom de branche**
-   - Pattern : `<préfixe>/<numéro>-<description>`
-   - Si pas de numéro détecté, demander à l'utilisateur
+4. **Extract the issue number from the branch name**
+   - Pattern: `<prefix>/<number>-<description>`
+   - If no number detected, ask the user: "Is there an issue number to close? (or press Enter to skip)"
 
-5. **Pousser la branche**
+5. **Push the branch**
 
    ```bash
-   git push origin <branche-courante>
+   git push origin <current-branch>
    ```
 
-6. **Préparer le titre et le body de la PR**
+6. **Prepare the PR title and body**
 
-   Body :
+   Body:
 
    ```
    ## Summary
-   <liste des changements principaux>
+   <list of main changes>
 
    ## Test plan
-   - [ ] lint + type-check passent
-   - [ ] Tests unitaires passent
-   - [ ] Testé en local
+   - [ ] lint + type-check pass
+   - [ ] Unit tests pass
+   - [ ] Tested locally
 
-   Closes #<numéro issue>
+   Closes #<issue number>
    ```
 
-7. **Déterminer les labels :**
-   - `feature/*phase-1*` → `["phase: 1", "domain: frontend"]` ou `backend`
+7. **Determine labels:**
+   - `feature/*phase-1*` → `["phase: 1", "domain: frontend"]` or `domain: backend`
    - `feature/*phase-2*` → `["phase: 2"]`
    - `feature/*phase-3*` → `["phase: 3"]`
    - `fix/*` → `["type: bug"]`
    - `hotfix/*` → `["type: bug", "priority: high"]`
    - `chore/*` → `["type: chore"]`
    - `release/*` → `["type: release"]`
-   - Ajouter `domain: devops` si fichiers dans `.github/`
-   - Ajouter `domain: shared` si fichiers dans `packages/`
+   - Add `domain: devops` if files changed in `.github/`
+   - Add `domain: shared` if files changed in `packages/`
 
-8. **Créer la PR via mcp**github**create_pull_request**
-   - owner et repo lus depuis MEMORY.md
+8. **Create the PR via mcp__github__create_pull_request**
+   - owner and repo read from MEMORY.md
    - assignees: [owner]
    - reviewers: [owner]
 
-9. **Assigner la PR au projet Scrum Board et au milestone** (si PROJECT_ID configuré dans MEMORY.md)
+9. **Assign the PR to the Scrum Board and milestone** (if PROJECT_ID is set in MEMORY.md)
 
    ```bash
    PR_NODE_ID=$(gh api repos/<owner>/<repo>/pulls/<PR_NUMBER> --jq '.node_id')
@@ -79,4 +79,5 @@ Exécuter dans l'ordre :
    gh api repos/<owner>/<repo>/issues/<PR_NUMBER> --method PATCH --field milestone=$MILESTONE_NUMBER
    ```
 
-10. **Confirmer à l'utilisateur avec l'URL de la PR**
+10. **Confirm to the user with the PR URL**
+    - Show: assignee ✅, reviewer ✅, project ✅, milestone ✅ (or "no milestone for this branch")

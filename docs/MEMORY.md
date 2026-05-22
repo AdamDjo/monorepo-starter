@@ -57,30 +57,30 @@
 
 ## Next Steps
 
-1. Tape **"go new-project"** pour initialiser le projet (Claude va brainstormer avec toi)
-2. `bash .github/setup-github.sh` — créer labels + milestones GitHub
-3. Installer Renovate : https://github.com/apps/renovate
-4. `pnpm dev` — démarrer en local
-5. `/feature <nom>` — démarrer ta première feature
+1. Type **"go new-project"** to initialize your project (Claude will brainstorm with you)
+2. `bash .github/setup-github.sh` — create GitHub labels + milestones
+3. Install Renovate: https://github.com/apps/renovate
+4. `pnpm dev` — start locally
+5. `/feature <name>` — start your first feature
 
 ---
 
-## Comment Claude t'assiste sur ce projet
+## How Claude assists on this project
 
-Au démarrage de chaque session, Claude lit ce fichier pour connaître l'état du projet.
+At the start of every session, Claude reads this file to know the current project state.
 
-**Commandes disponibles :**
+**Available commands:**
 
-| Commande | Action |
+| Command | Action |
 |---|---|
-| `go new-project` | Brainstorming + initialisation complète du projet |
-| `/feature <nom>` | Crée une issue GitHub + branche feature depuis develop |
-| `/bug <nom>` | Crée une issue bug + branche fix |
-| `/hotfix <nom>` | Crée une issue + branche hotfix depuis main |
-| `/pr` | Pousse la branche et ouvre une PR avec labels/milestone |
-| `/release <version>` | Crée la branche release (déclenche CI) |
-| `/sync` | Sync develop avec main après hotfix/release |
-| `/docs` | Met à jour MEMORY.md + ARCHITECTURE.md depuis l'état du code |
-| `/implement <desc>` | Workflow complet d'implémentation d'une feature |
-| `/check` | Lance lint + type-check sur tout le monorepo |
-| `/status` | Affiche phase courante, branche, prochaines tâches |
+| `go new-project` | Brainstorm + full project initialization |
+| `/feature <name>` | Create a GitHub issue + feature branch from develop |
+| `/bug <name>` | Create a bug issue + fix branch |
+| `/hotfix <name>` | Create an issue + hotfix branch from main |
+| `/pr` | Push the branch and open a PR with labels/milestone |
+| `/release <version>` | Create the release branch (triggers CI) |
+| `/sync` | Sync develop with main after hotfix/release |
+| `/docs` | Update MEMORY.md + ARCHITECTURE.md from the current code state |
+| `/implement <desc>` | Full feature implementation workflow |
+| `/check` | Run lint + type-check across the monorepo |
+| `/status` | Show current phase, branch, and next tasks |

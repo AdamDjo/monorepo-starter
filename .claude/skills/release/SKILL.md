@@ -1,48 +1,48 @@
 ---
 name: release
-description: Crée et pousse une branche release/X.Y.Z depuis develop. Déclenche le CI + tag + GitHub Release automatiquement. Usage: /release <version> — ex: /release 1.2.3
+description: Creates and pushes a release/X.Y.Z branch from develop. Triggers CI + tag + GitHub Release automatically. Usage: /release <version> — e.g. /release 1.2.3
 allowed-tools: Bash
 ---
 
-L'utilisateur veut créer une release. Les args sont le numéro de version (ex: `1.2.3` ou `0.1.0`).
+The user wants to cut a release. Args are the version number (e.g. `1.2.3` or `0.1.0`).
 
-Si aucun arg fourni, demander la version souhaitée.
+If no args provided, ask for the desired version.
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Valider le format semver**
-   - Le format doit être X.Y.Z (chiffres uniquement, pas de 'v' nécessaire)
-   - Si format invalide, afficher une erreur et arrêter
+1. **Validate semver format**
+   - Must be X.Y.Z (digits only, no leading `v`)
+   - If invalid, show an error and stop
 
-2. **Vérifier que develop est propre**
+2. **Check develop is clean**
 
    ```bash
    git status --short
    ```
 
-3. **Mettre develop à jour**
+3. **Update develop**
 
    ```bash
    git checkout develop && git pull origin develop
    ```
 
-4. **Créer et pousser la branche release**
+4. **Create and push the release branch**
 
    ```bash
    git checkout -b release/<version>
    git push origin release/<version>
    ```
 
-5. **Confirmer :**
+5. **Confirm:**
 
    ```
-   ✅ release/<version> créée et poussée
+   ✅ release/<version> created and pushed
 
-   GitHub Actions va automatiquement :
-   1. Lancer lint + type-check + build
-   2. Créer le tag v<version>
-   3. Publier la GitHub Release avec changelog auto
-   4. Ouvrir une PR release/<version> → main
+   GitHub Actions will automatically:
+   1. Run lint + type-check + build
+   2. Create tag v<version>
+   3. Publish the GitHub Release with auto-generated changelog
+   4. Open a PR release/<version> → main
 
-   Après le merge dans main, lance : /sync
+   After the merge into main, run: /sync
    ```

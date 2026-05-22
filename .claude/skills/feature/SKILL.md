@@ -1,60 +1,60 @@
 ---
 name: feature
-description: Crée une issue GitHub puis une branche feature depuis develop avec le numéro d'issue. Usage: /feature <nom> — ex: /feature phase-1-auth
+description: Creates a GitHub issue then a feature branch from develop with the issue number. Usage: /feature <name> — e.g. /feature user-auth
 allowed-tools: Bash, mcp__github__create_issue
 ---
 
-L'utilisateur veut démarrer une nouvelle feature. Les args sont le nom de la branche (sans le préfixe `feature/`).
+The user wants to start a new feature. Args are the branch name (without the `feature/` prefix).
 
-Si aucun arg fourni, demander le nom à l'utilisateur.
+If no args provided, ask the user for the branch name.
 
-Lire `docs/MEMORY.md` pour récupérer owner et repo (format: `owner/repo`).
+Read `docs/MEMORY.md` to get owner and repo (format: `owner/repo`).
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Créer l'issue GitHub**
-   - Demander : "Décris la feature en une phrase (pour l'issue GitHub)"
-   - Déduire les labels depuis le nom de branche :
+1. **Create the GitHub issue**
+   - Ask: "Describe the feature in one sentence (for the GitHub issue)"
+   - Derive labels from the branch name:
      - `*phase-1*` → `["type: feature", "phase: 1"]`
      - `*phase-2*` → `["type: feature", "phase: 2"]`
      - `*phase-3*` → `["type: feature", "phase: 3"]`
-     - Sinon → `["type: feature"]`
-   - Créer l'issue via mcp**github**create_issue avec :
-     - owner et repo lus depuis MEMORY.md
+     - Otherwise → `["type: feature"]`
+   - Create the issue via mcp__github__create_issue:
+     - owner and repo read from MEMORY.md
      - title: "feat: <description>"
-     - labels déduits ci-dessus
-     - assignees: [owner lu depuis MEMORY.md]
-   - Noter le numéro de l'issue créée → `<numéro>`
+     - labels as derived above
+     - assignees: [owner from MEMORY.md]
+   - Note the created issue number → `<number>`
 
-2. **Ajouter l'issue au projet Scrum Board** (si PROJECT_ID configuré dans MEMORY.md)
+2. **Add the issue to the Scrum Board** (if PROJECT_ID is set in MEMORY.md)
 
    ```bash
-   ISSUE_NODE_ID=$(gh api repos/<owner>/<repo>/issues/<numéro> --jq '.node_id')
+   ISSUE_NODE_ID=$(gh api repos/<owner>/<repo>/issues/<number> --jq '.node_id')
    gh api graphql -f query='mutation { addProjectV2ItemById(input: { projectId: "<PROJECT_ID>" contentId: "'$ISSUE_NODE_ID'" }) { item { id } } }'
    ```
 
-3. **Mettre develop à jour**
+3. **Update develop**
 
    ```bash
    git checkout develop && git pull origin develop
    ```
 
-4. **Créer la branche avec le numéro d'issue**
+4. **Create the branch with the issue number**
 
    ```bash
-   git checkout -b feature/<numéro>-<args>
+   git checkout -b feature/<number>-<args>
    ```
 
-5. **Confirmer à l'utilisateur :**
+5. **Confirm to the user:**
 
    ```
-   ✅ Issue #<numéro> créée — assignée à <owner>
-   ✅ Branche 'feature/<numéro>-<args>' créée depuis develop
+   ✅ Issue #<number> created — assigned to <owner>
+   ✅ Branch 'feature/<number>-<args>' created from develop
 
-   Workflow :
-   1. Code, commits avec : git commit -m "feat(<scope>): <description>"
-   2. Quand prêt : /pr pour pousser et ouvrir la PR → develop (Closes #<numéro>)
+   Workflow:
+   1. Code, commit with: git commit -m "feat(<scope>): <description>"
+   2. When ready: /pr to push and open the PR → develop (Closes #<number>)
 
-   Format commit : feat | fix | chore | docs | refactor | test
-   Pas de Co-Authored-By Claude
+   Commit types: feat | fix | chore | docs | refactor | test
+   No Co-Authored-By Claude
    ```

@@ -1,51 +1,51 @@
 ---
 name: bug
-description: Crée une issue GitHub puis une branche fix depuis develop avec le numéro d'issue. Usage: /bug <nom> — ex: /bug login-crash
+description: Creates a GitHub issue then a fix branch from develop with the issue number. Usage: /bug <name> — e.g. /bug login-crash
 allowed-tools: Bash, mcp__github__create_issue
 ---
 
-L'utilisateur veut corriger un bug. Les args sont le nom de la branche (sans le préfixe `fix/`).
+The user wants to fix a bug. Args are the branch name (without the `fix/` prefix).
 
-Si aucun arg fourni, demander le nom et la description du bug.
+If no args provided, ask for the name and description of the bug.
 
-Lire `docs/MEMORY.md` pour récupérer owner et repo.
+Read `docs/MEMORY.md` to get owner and repo.
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Créer l'issue GitHub**
-   - Demander : "Décris le bug en une phrase (pour l'issue GitHub)"
-   - Créer l'issue via mcp**github**create_issue avec :
-     - owner et repo lus depuis MEMORY.md
-     - title: "fix: <description du bug>"
+1. **Create the GitHub issue**
+   - Ask: "Describe the bug in one sentence (for the GitHub issue)"
+   - Create the issue via mcp__github__create_issue:
+     - owner and repo read from MEMORY.md
+     - title: "fix: <bug description>"
      - labels: ["type: bug"]
      - assignees: [owner]
-   - Noter le numéro de l'issue créée → `<numéro>`
+   - Note the created issue number → `<number>`
 
-2. **Ajouter l'issue au projet Scrum Board** (si PROJECT_ID configuré dans MEMORY.md)
+2. **Add the issue to the Scrum Board** (if PROJECT_ID is set in MEMORY.md)
 
    ```bash
-   ISSUE_NODE_ID=$(gh api repos/<owner>/<repo>/issues/<numéro> --jq '.node_id')
+   ISSUE_NODE_ID=$(gh api repos/<owner>/<repo>/issues/<number> --jq '.node_id')
    gh api graphql -f query='mutation { addProjectV2ItemById(input: { projectId: "<PROJECT_ID>" contentId: "'$ISSUE_NODE_ID'" }) { item { id } } }'
    ```
 
-3. **Mettre develop à jour**
+3. **Update develop**
 
    ```bash
    git checkout develop && git pull origin develop
    ```
 
-4. **Créer la branche avec le numéro d'issue**
+4. **Create the branch with the issue number**
 
    ```bash
-   git checkout -b fix/<numéro>-<args>
+   git checkout -b fix/<number>-<args>
    ```
 
-5. **Confirmer à l'utilisateur :**
+5. **Confirm to the user:**
 
    ```
-   ✅ Issue #<numéro> créée
-   ✅ Branche 'fix/<numéro>-<args>' créée depuis develop
+   ✅ Issue #<number> created
+   ✅ Branch 'fix/<number>-<args>' created from develop
 
-   1. Corrige le bug, commite avec : git commit -m "fix(<scope>): <description>"
-   2. Quand prêt : /pr pour pousser et ouvrir la PR → develop (Closes #<numéro>)
+   1. Fix the bug, commit with: git commit -m "fix(<scope>): <description>"
+   2. When ready: /pr to push and open the PR → develop (Closes #<number>)
    ```

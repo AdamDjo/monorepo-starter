@@ -1,34 +1,34 @@
 ---
 name: create-issues
-description: Create GitHub issues from a specification or document. Usage: /create-issues <source> — ex: /create-issues docs/PRODUCT_DESIGN.md
+description: Creates GitHub issues from a specification or document. Usage: /create-issues <source> — e.g. /create-issues docs/PRODUCT_DESIGN.md
 allowed-tools: Read, Bash, mcp__github__create_issue
 ---
 
-L'utilisateur veut créer des issues GitHub depuis un document ou une description.
+The user wants to create GitHub issues from a document or description.
 
-Lire `docs/MEMORY.md` pour récupérer owner et repo.
+Read `docs/MEMORY.md` to get owner and repo.
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Lire la source**
-   - Si un fichier est passé en argument (ex: `docs/PRODUCT_DESIGN.md`), le lire
-   - Sinon, demander : "Décris les tâches à créer comme issues (liste ou document)"
+1. **Read the source**
+   - If a file is passed as argument (e.g. `docs/PRODUCT_DESIGN.md`), read it
+   - Otherwise ask: "Describe the tasks to create as issues (list or document)"
 
-2. **Identifier les tâches à créer**
-   - Extraire les tâches distinctes
-   - Déduire phase, domaine et priorité pour chaque tâche
+2. **Identify tasks to create**
+   - Extract distinct tasks
+   - Infer phase, domain, and priority for each task
 
-3. **Pour chaque tâche, créer une issue via mcp**github**create_issue :**
-   - owner et repo lus depuis MEMORY.md
+3. **For each task, create an issue via mcp__github__create_issue:**
+   - owner and repo read from MEMORY.md
    - title: "feat: <description>"
-   - labels: selon phase et domaine
+   - labels: based on phase and domain
    - assignees: [owner]
 
-4. **Si PROJECT_ID est configuré dans MEMORY.md, ajouter les issues au Scrum Board :**
+4. **If PROJECT_ID is set in MEMORY.md, add issues to the Scrum Board:**
 
    ```bash
-   ISSUE_NODE_ID=$(gh api repos/<owner>/<repo>/issues/<numéro> --jq '.node_id')
+   ISSUE_NODE_ID=$(gh api repos/<owner>/<repo>/issues/<number> --jq '.node_id')
    gh api graphql -f query='mutation { addProjectV2ItemById(input: { projectId: "<PROJECT_ID>" contentId: "'$ISSUE_NODE_ID'" }) { item { id } } }'
    ```
 
-5. **Confirmer avec la liste des issues créées et leurs numéros**
+5. **Confirm with the list of created issues and their numbers**

@@ -1,15 +1,14 @@
 ---
 name: docs
-description: Met à jour docs/MEMORY.md et docs/ARCHITECTURE.md en lisant l'état réel du code. Usage: /docs
-disable-model-invocation: true
+description: Updates docs/MEMORY.md and docs/ARCHITECTURE.md by reading the current state of the code. Usage: /docs
 allowed-tools: Read, Edit, Glob, Bash
 ---
 
-Met à jour la documentation persistante du projet en lisant l'état réel du code.
+Updates the project's persistent documentation by reading the actual current state of the code.
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Lire l'état actuel**
+1. **Read current state**
 
    ```bash
    git log --oneline -10
@@ -17,37 +16,37 @@ Exécuter dans l'ordre :
    git status --short
    ```
 
-   Lire aussi :
-   - `docs/MEMORY.md` (version actuelle)
-   - `docs/ARCHITECTURE.md` (version actuelle)
-   - `packages/shared/src/index.ts` (types exportés)
-   - `apps/backend/src/index.ts` (routes enregistrées)
-   - `apps/frontend/src/app/` (pages existantes)
+   Also read:
+   - `docs/MEMORY.md` (current version)
+   - `docs/ARCHITECTURE.md` (current version)
+   - `packages/shared/src/index.ts` (exported types)
+   - `apps/backend/src/index.ts` (registered routes)
+   - `apps/frontend/src/app/` (existing pages)
 
-2. **Mettre à jour `docs/MEMORY.md`**
+2. **Update `docs/MEMORY.md`**
 
-   Sections à mettre à jour :
-   - **Quick Summary** : branche courante, phase actuelle
-   - **Project State** : liste des features implémentées vs prévues
-   - **Timeline** : ajouter les événements récents (features mergées, releases)
-   - **Next Steps** : ce qui reste à faire en Phase courante
+   Sections to update:
+   - **Quick Summary**: current branch, current phase
+   - **Project State**: list of implemented vs planned features
+   - **Timeline**: add recent events (merged features, releases)
+   - **Next Steps**: what remains to do in the current phase
 
-   Ne pas écraser les sections "Key Decisions" et "User Preferences" sauf si l'utilisateur le demande.
+   Do not overwrite "Key Decisions" and "User Preferences" sections unless the user asks.
 
-3. **Mettre à jour `docs/ARCHITECTURE.md`**
+3. **Update `docs/ARCHITECTURE.md`**
 
-   Sections à mettre à jour :
-   - **Data Model** : types réels depuis `packages/shared/src/types/`
-   - **API Design** : routes réelles depuis `apps/backend/src/routes/`
-   - **Folder Structure** : structure réelle des dossiers créés
+   Sections to update:
+   - **Data Model**: actual types from `packages/shared/src/types/`
+   - **API Design**: actual routes from `apps/backend/src/routes/`
+   - **Folder Structure**: actual folder structure created
 
-4. **Confirmer :**
+4. **Confirm:**
 
    ```
-   ✅ docs/MEMORY.md mis à jour
-   ✅ docs/ARCHITECTURE.md mis à jour
+   ✅ docs/MEMORY.md updated
+   ✅ docs/ARCHITECTURE.md updated
 
-   Résumé des changements :
-   - <ce qui a changé dans MEMORY.md>
-   - <ce qui a changé dans ARCHITECTURE.md>
+   Summary of changes:
+   - <what changed in MEMORY.md>
+   - <what changed in ARCHITECTURE.md>
    ```

@@ -18,29 +18,29 @@
 When the user types **"go new-project"**, the `project-setup` agent takes over. It runs a guided flow in **4 phases** — no long questionnaire, a real conversation:
 
 ### Phase 1 — Brainstorming (2-3 exchanges)
-Claude asks ONE open question: *"Dis-moi tout sur ton projet."*
+Claude asks ONE open question: *"Tell me everything about your project."*
 Then it:
-- Reformule l'idée pour confirmer la compréhension
-- **Propose 3-5 features clés** avec un "pourquoi" pour chacune
-- Soulève 1-2 risques ou questions à anticiper
-- Demande validation avant de continuer
+- Restates the idea to confirm understanding
+- **Proposes 3-5 key features** with a "why" for each
+- Flags 1-2 risks or questions to anticipate
+- Asks for validation before moving on
 
-### Phase 2 — Stack (1 échange)
-Toutes les questions techniques en une fois (frontend, backend, DB, AI, GitHub, npm scope).
-Les valeurs par défaut sont Next.js 15 + Express + Supabase — l'utilisateur ne répond qu'à ce qu'il veut changer.
+### Phase 2 — Stack (1 exchange)
+All technical questions at once (frontend, backend, DB, AI, GitHub, npm scope).
+Defaults are Next.js 15 + Express + Supabase — the user only answers what they want to change.
 
-### Phase 3 — Génération automatique
-- `docs/PRODUCT_DESIGN.md` — vision, features par phase, user stories, non-goals
-- `docs/ARCHITECTURE.md` — stack, data model, API design, décisions clés
-- `docs/MEMORY.md` — état du projet rempli (lu à chaque session)
-- Renommage `@starter/*` → `@<scope>/*` dans tous les fichiers
-- Swap des dépendances selon la stack choisie
-- Mise à jour des placeholders dans les workflows CI
+### Phase 3 — Auto-generated
+- `docs/PRODUCT_DESIGN.md` — vision, features by phase, user stories, non-goals
+- `docs/ARCHITECTURE.md` — stack, data model, API design, key decisions
+- `docs/MEMORY.md` — project state filled in (read every session)
+- Rename `@starter/*` → `@<scope>/*` across all files
+- Swap deps based on chosen stack
+- Update placeholders in CI workflows
 
 ### Phase 4 — GitHub + Git
-- Milestones créées : Phase 1 / Phase 2 / Phase 3
-- Issues Phase 1 créées depuis PRODUCT_DESIGN.md
-- Branche `develop` créée et poussée
+- Milestones created: Phase 1 / Phase 2 / Phase 3
+- Phase 1 issues created from PRODUCT_DESIGN.md
+- `develop` branch created and pushed
 
 ## Tech Stack (defaults — configurable via "go new-project")
 

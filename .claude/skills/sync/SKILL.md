@@ -1,25 +1,25 @@
 ---
 name: sync
-description: Synchronise develop avec main après un merge de hotfix ou release. Usage: /sync
+description: Syncs develop with main after a hotfix or release merge. Usage: /sync
 allowed-tools: Bash
 ---
 
-L'utilisateur veut synchroniser develop avec main (après un merge hotfix ou release dans main).
+The user wants to sync develop with main (after a hotfix or release was merged into main).
 
-Exécuter dans l'ordre :
+Execute in order:
 
-1. **Vérifier l'état courant**
+1. **Check current state**
 
    ```bash
    git fetch origin
    git log origin/develop..origin/main --oneline
    ```
 
-   - Si develop est déjà à jour avec main, afficher "✅ develop est déjà à jour avec main" et arrêter
+   - If develop is already up to date with main, print "✅ develop is already up to date with main" and stop
 
-2. **Afficher les commits qui seront ramenés dans develop**
+2. **Show the commits that will be brought into develop**
 
-3. **Merger main dans develop**
+3. **Merge main into develop**
 
    ```bash
    git checkout develop
@@ -27,16 +27,16 @@ Exécuter dans l'ordre :
    git merge origin/main --no-edit
    ```
 
-4. **Pousser develop**
+4. **Push develop**
 
    ```bash
    git push origin develop
    ```
 
-5. **Confirmer :**
+5. **Confirm:**
 
    ```
-   ✅ develop est maintenant à jour avec main
+   ✅ develop is now up to date with main
 
-   Tu peux repartir sur une nouvelle feature : /feature <nom>
+   Ready to start a new feature: /feature <name>
    ```
