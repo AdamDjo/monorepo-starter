@@ -4,6 +4,10 @@
 
 **Claude: Always read `docs/MEMORY.md` at the start of each session.** It contains persistent project state, user preferences, and implementation notes that carry across conversations.
 
+## Language
+
+Respond conversationally in the user's language (detect from their messages). Always generate file content in English — docs, commit messages, issue titles, PR bodies, code comments.
+
 ## ⚠️ IMPORTANT: Git Commit Rules
 
 **Always apply these rules for every commit, no exceptions:**
