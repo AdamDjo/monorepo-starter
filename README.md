@@ -1,14 +1,14 @@
 <div align="center">
 
-# monorepo-starter
+# claude-stack
 
 **The monorepo template that sets itself up.**
 
 Type `go new-project` in Claude Code. Claude asks what you're building, proposes features, and configures everything — docs, GitHub issues, branches, dependencies — automatically.
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AdamDjo/monorepo-starter/generate)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AdamDjo/claude-stack/generate)
 &nbsp;
-[![CI](https://github.com/AdamDjo/monorepo-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/AdamDjo/monorepo-starter/actions/workflows/ci.yml)
+[![CI](https://github.com/AdamDjo/claude-stack/actions/workflows/ci.yml/badge.svg)](https://github.com/AdamDjo/claude-stack/actions/workflows/ci.yml)
 &nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
@@ -167,7 +167,7 @@ your-project/
 Click **"Use this template"** at the top of this page, or:
 
 ```bash
-git clone https://github.com/AdamDjo/monorepo-starter.git <your-project>
+git clone https://github.com/AdamDjo/claude-stack.git <your-project>
 cd <your-project>
 ```
 
