@@ -68,14 +68,54 @@ When the user types **"go new-project"**, run this checklist sequentially:
 
 Default scope: `@starter/*`
 
-**After running "go new-project"**: replace `@starter/*` everywhere with `@<your-project-scope>/*`.
+**After running "go new-project"**: Claude renames `@starter/*` → `@<your-scope>/*` automatically in all files.
 
-Files to update:
-- Root `package.json`
-- `packages/*/package.json` (name field)
-- `apps/*/package.json` (name field + dependencies)
-- `apps/*/tsconfig.json` (paths aliases)
-- `apps/*/eslint.config.js` (require paths)
+---
+
+## Dependencies — universal vs stack-specific
+
+### Always present (every project, never remove)
+
+**Root:** Turborepo, pnpm, Husky, commitlint, lint-staged, Knip
+
+**Both apps:**
+- `zod` — validation, framework-agnostic
+- `@<scope>/eslint-config` + `@<scope>/prettier-config` — linting/formatting
+- `typescript`, `eslint`, `prettier`
+- `vitest` + `@vitest/coverage-v8` — unit tests
+- `dotenv` — env vars (backend)
+
+**packages/shared:** `ApiResponse<T>`, `PaginatedResponse<T>` — always keep, add your types here
+
+### Stack-specific (swapped by "go new-project")
+
+**Frontend framework:**
+| Choice | Deps added | Deps removed |
+|---|---|---|
+| Next.js 15 (default) | `next`, `react`, `react-dom`, `eslint-config-next`, `@next/bundle-analyzer` | — |
+| React + Vite | `vite`, `@vitejs/plugin-react` | `next`, `eslint-config-next`, `@next/bundle-analyzer` |
+| Remix | `@remix-run/*` | `next`, `zustand`, `@tanstack/react-query` |
+| SvelteKit | `@sveltejs/kit`, `svelte` | all React/Next deps |
+
+**React UI libs (kept for any React-based frontend):**
+`zustand`, `@tanstack/react-query`, `axios`, `react-hook-form`, `lucide-react`, `framer-motion`
+
+**Backend framework:**
+| Choice | Deps added | Deps removed |
+|---|---|---|
+| Express (default) | `express`, `express-rate-limit`, `cors`, `tsx` | — |
+| NestJS | `@nestjs/core`, `@nestjs/common`, `reflect-metadata`, `rxjs` | `express`, `tsx` |
+| Hono | `hono` | `express`, `express-rate-limit` |
+
+**Database:**
+| Choice | Deps added | Deps removed |
+|---|---|---|
+| Supabase (default) | `@supabase/supabase-js` | — |
+| Postgres + Prisma | `@prisma/client`, `prisma` | `@supabase/supabase-js` |
+| MongoDB | `mongoose` | `@supabase/supabase-js` |
+
+**AI providers (added on top, never replacing anything):**
+`openai`, `@anthropic-ai/sdk`, `@google/generative-ai`, `@mistralai/mistralai`
 
 ## Project Structure
 

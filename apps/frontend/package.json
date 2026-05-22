@@ -18,39 +18,50 @@
   },
   "dependencies": {
     "@starter/shared": "workspace:*",
-    "@supabase/supabase-js": "^2.47.0",
+
+    "zod": "^3.24.0",
+
     "@tanstack/react-query": "^5.55.0",
     "axios": "^1.15.0",
+    "framer-motion": "^11.0.0",
     "lucide-react": "^0.460.0",
+    "react-hook-form": "^7.54.0",
+    "zustand": "^5.0.0",
+
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.0",
-    "zod": "^3.24.0",
-    "zustand": "^5.0.0"
+
+    "@supabase/supabase-js": "^2.47.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15",
     "@starter/eslint-config": "workspace:*",
     "@starter/prettier-config": "workspace:*",
-    "@tailwindcss/postcss": "^4",
-    "@testing-library/jest-dom": "^6",
-    "@testing-library/react": "^16",
-    "@testing-library/user-event": "^14",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "typescript": "^5",
+
+    "vitest": "^2",
     "@vitejs/plugin-react": "^4",
     "@vitest/coverage-v8": "^2",
     "@vitest/ui": "^2",
+    "@testing-library/jest-dom": "^6",
+    "@testing-library/react": "^16",
+    "@testing-library/user-event": "^14",
+    "jsdom": "^25",
+
     "cypress": "^13",
+
     "eslint": "^9",
+    "prettier": "^3.4.0",
+
+    "tailwindcss": "^4",
+    "@tailwindcss/postcss": "^4",
+    "postcss": "^8",
+
+    "@next/bundle-analyzer": "^15",
     "eslint-config-next": "^15.0.0",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "jsdom": "^25",
-    "prettier": "^3.4.0",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "vitest": "^2"
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
   }
 }
