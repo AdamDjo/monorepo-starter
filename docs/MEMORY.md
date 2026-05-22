@@ -57,9 +57,30 @@
 
 ## Next Steps
 
-<!-- What to do next session -->
+1. Tape **"go new-project"** pour initialiser le projet (Claude va brainstormer avec toi)
+2. `bash .github/setup-github.sh` — créer labels + milestones GitHub
+3. Installer Renovate : https://github.com/apps/renovate
+4. `pnpm dev` — démarrer en local
+5. `/feature <nom>` — démarrer ta première feature
 
-1. Run "go new-project" to initialize the project
-2. Configure GitHub labels: `GITHUB_TOKEN=xxx bash .github/setup-github.sh`
-3. Install Renovate: https://github.com/apps/renovate
-4. Start first feature: `/feature <name>`
+---
+
+## Comment Claude t'assiste sur ce projet
+
+Au démarrage de chaque session, Claude lit ce fichier pour connaître l'état du projet.
+
+**Commandes disponibles :**
+
+| Commande | Action |
+|---|---|
+| `go new-project` | Brainstorming + initialisation complète du projet |
+| `/feature <nom>` | Crée une issue GitHub + branche feature depuis develop |
+| `/bug <nom>` | Crée une issue bug + branche fix |
+| `/hotfix <nom>` | Crée une issue + branche hotfix depuis main |
+| `/pr` | Pousse la branche et ouvre une PR avec labels/milestone |
+| `/release <version>` | Crée la branche release (déclenche CI) |
+| `/sync` | Sync develop avec main après hotfix/release |
+| `/docs` | Met à jour MEMORY.md + ARCHITECTURE.md depuis l'état du code |
+| `/implement <desc>` | Workflow complet d'implémentation d'une feature |
+| `/check` | Lance lint + type-check sur tout le monorepo |
+| `/status` | Affiche phase courante, branche, prochaines tâches |

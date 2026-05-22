@@ -13,48 +13,34 @@
 - **Format**: `type(scope): short summary` + blank line + detailed explanation if needed
 - **Types**: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`
 
-## First Session Checklist — "go new-project"
+## First Session — "go new-project"
 
-When the user types **"go new-project"**, run this checklist sequentially:
+When the user types **"go new-project"**, the `project-setup` agent takes over. It runs a guided flow in **4 phases** — no long questionnaire, a real conversation:
 
-1. **Ask these questions one by one:**
-   - "What's the name of your project?"
-   - "Give me a short description (1-2 sentences)"
-   - "What's the main feature or purpose?"
-   - "Frontend stack: Next.js 15 (default) or something else (React+Vite, Remix, etc.)?"
-   - "Backend stack: Express (default) or something else (NestJS, FastAPI, Hono, etc.)?"
-   - "Database: Supabase (default), Postgres+Prisma, MongoDB, or other?"
-   - "Do you want AI integration? If yes, which provider(s)? (OpenAI, Claude, Gemini, Mistral)"
+### Phase 1 — Brainstorming (2-3 exchanges)
+Claude asks ONE open question: *"Dis-moi tout sur ton projet."*
+Then it:
+- Reformule l'idée pour confirmer la compréhension
+- **Propose 3-5 features clés** avec un "pourquoi" pour chacune
+- Soulève 1-2 risques ou questions à anticiper
+- Demande validation avant de continuer
 
-2. **After collecting answers:**
-   - Generate `docs/PRODUCT_DESIGN.md` with project vision, features, user stories
-   - Generate `docs/ARCHITECTURE.md` with tech choices, data model, API design
-   - Update `docs/MEMORY.md` with project name, description, stack, phase
-   - Update `CLAUDE.md` (this file): replace `@starter/*` with `@<project-scope>/*`, update project description
-   - Update all `package.json` files: replace `@starter/*` with `@<project-scope>/*`
+### Phase 2 — Stack (1 échange)
+Toutes les questions techniques en une fois (frontend, backend, DB, AI, GitHub, npm scope).
+Les valeurs par défaut sont Next.js 15 + Express + Supabase — l'utilisateur ne répond qu'à ce qu'il veut changer.
 
-3. **GitHub setup:**
-   - Create GitHub milestones: Phase 1 — Foundation, Phase 2 — MVP, Phase 3 — Polish
-   - Create Phase 1 issues from PRODUCT_DESIGN.md
-   - Remind user to run: `bash .github/setup-github.sh` to create labels
+### Phase 3 — Génération automatique
+- `docs/PRODUCT_DESIGN.md` — vision, features par phase, user stories, non-goals
+- `docs/ARCHITECTURE.md` — stack, data model, API design, décisions clés
+- `docs/MEMORY.md` — état du projet rempli (lu à chaque session)
+- Renommage `@starter/*` → `@<scope>/*` dans tous les fichiers
+- Swap des dépendances selon la stack choisie
+- Mise à jour des placeholders dans les workflows CI
 
-4. **Git setup:**
-   - Create `develop` branch from `main`
-   - Push `develop` to remote
-
-5. **Confirm with summary:**
-
-   ```
-   ✅ Project initialized: <name>
-   ✅ docs/PRODUCT_DESIGN.md generated
-   ✅ docs/ARCHITECTURE.md generated
-   ✅ docs/MEMORY.md updated
-   ✅ Milestones created: Phase 1 / 2 / 3
-   ✅ Phase 1 issues created
-   ✅ develop branch created
-
-   Next: /feature <issue-name> to start your first feature
-   ```
+### Phase 4 — GitHub + Git
+- Milestones créées : Phase 1 / Phase 2 / Phase 3
+- Issues Phase 1 créées depuis PRODUCT_DESIGN.md
+- Branche `develop` créée et poussée
 
 ## Tech Stack (defaults — configurable via "go new-project")
 
