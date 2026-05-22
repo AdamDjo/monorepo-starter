@@ -12,7 +12,7 @@ Execute in order:
 
 1. **Create the GitHub issue**
    - Ask: "Describe the production issue in one sentence"
-   - Create the issue via mcp__github__create_issue:
+   - Create the issue via mcp**github**create_issue:
      - owner and repo read from MEMORY.md
      - title: "hotfix: <description>"
      - labels: ["type: bug", "priority: high"]

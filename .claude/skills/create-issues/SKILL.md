@@ -18,7 +18,7 @@ Execute in order:
    - Extract distinct tasks
    - Infer phase, domain, and priority for each task
 
-3. **For each task, create an issue via mcp__github__create_issue:**
+3. **For each task, create an issue via mcp**github**create_issue:**
    - owner and repo read from MEMORY.md
    - title: "feat: <description>"
    - labels: based on phase and domain

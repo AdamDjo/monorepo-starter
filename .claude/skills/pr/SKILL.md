@@ -64,7 +64,7 @@ Execute in order:
    - Add `domain: devops` if files changed in `.github/`
    - Add `domain: shared` if files changed in `packages/`
 
-8. **Create the PR via mcp__github__create_pull_request**
+8. **Create the PR via mcp**github**create_pull_request**
    - owner and repo read from MEMORY.md
    - assignees: [owner]
    - reviewers: [owner]

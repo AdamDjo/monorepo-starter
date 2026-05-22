@@ -14,7 +14,7 @@ Execute in order:
 
 1. **Create the GitHub issue**
    - Ask: "Describe the bug in one sentence (for the GitHub issue)"
-   - Create the issue via mcp__github__create_issue:
+   - Create the issue via mcp**github**create_issue:
      - owner and repo read from MEMORY.md
      - title: "fix: <bug description>"
      - labels: ["type: bug"]

@@ -71,16 +71,16 @@ At the start of every session, Claude reads this file to know the current projec
 
 **Available commands:**
 
-| Command | Action |
-|---|---|
-| `go new-project` | Brainstorm + full project initialization |
-| `/feature <name>` | Create a GitHub issue + feature branch from develop |
-| `/bug <name>` | Create a bug issue + fix branch |
-| `/hotfix <name>` | Create an issue + hotfix branch from main |
-| `/pr` | Push the branch and open a PR with labels/milestone |
-| `/release <version>` | Create the release branch (triggers CI) |
-| `/sync` | Sync develop with main after hotfix/release |
-| `/docs` | Update MEMORY.md + ARCHITECTURE.md from the current code state |
-| `/implement <desc>` | Full feature implementation workflow |
-| `/check` | Run lint + type-check across the monorepo |
-| `/status` | Show current phase, branch, and next tasks |
+| Command              | Action                                                         |
+| -------------------- | -------------------------------------------------------------- |
+| `go new-project`     | Brainstorm + full project initialization                       |
+| `/feature <name>`    | Create a GitHub issue + feature branch from develop            |
+| `/bug <name>`        | Create a bug issue + fix branch                                |
+| `/hotfix <name>`     | Create an issue + hotfix branch from main                      |
+| `/pr`                | Push the branch and open a PR with labels/milestone            |
+| `/release <version>` | Create the release branch (triggers CI)                        |
+| `/sync`              | Sync develop with main after hotfix/release                    |
+| `/docs`              | Update MEMORY.md + ARCHITECTURE.md from the current code state |
+| `/implement <desc>`  | Full feature implementation workflow                           |
+| `/check`             | Run lint + type-check across the monorepo                      |
+| `/status`            | Show current phase, branch, and next tasks                     |

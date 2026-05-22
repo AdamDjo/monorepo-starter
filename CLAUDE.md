@@ -22,18 +22,22 @@ Respond conversationally in the user's language (detect from their messages). Al
 When the user types **"go new-project"**, the `project-setup` agent takes over. It runs a guided flow in **4 phases** — no long questionnaire, a real conversation:
 
 ### Phase 1 — Brainstorming (2-3 exchanges)
-Claude asks ONE open question: *"Tell me everything about your project."*
+
+Claude asks ONE open question: _"Tell me everything about your project."_
 Then it:
+
 - Restates the idea to confirm understanding
 - **Proposes 3-5 key features** with a "why" for each
 - Flags 1-2 risks or questions to anticipate
 - Asks for validation before moving on
 
 ### Phase 2 — Stack (1 exchange)
+
 All technical questions at once (frontend, backend, DB, AI, GitHub, npm scope).
 Defaults are Next.js 15 + Express + Supabase — the user only answers what they want to change.
 
 ### Phase 3 — Auto-generated
+
 - `docs/PRODUCT_DESIGN.md` — vision, features by phase, user stories, non-goals
 - `docs/ARCHITECTURE.md` — stack, data model, API design, key decisions
 - `docs/MEMORY.md` — project state filled in (read every session)
@@ -42,6 +46,7 @@ Defaults are Next.js 15 + Express + Supabase — the user only answers what they
 - Update placeholders in CI workflows
 
 ### Phase 4 — GitHub + Git
+
 - Milestones created: Phase 1 / Phase 2 / Phase 3
 - Phase 1 issues created from PRODUCT_DESIGN.md
 - `develop` branch created and pushed

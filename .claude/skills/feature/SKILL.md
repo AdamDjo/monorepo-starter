@@ -19,7 +19,7 @@ Execute in order:
      - `*phase-2*` → `["type: feature", "phase: 2"]`
      - `*phase-3*` → `["type: feature", "phase: 3"]`
      - Otherwise → `["type: feature"]`
-   - Create the issue via mcp__github__create_issue:
+   - Create the issue via mcp**github**create_issue:
      - owner and repo read from MEMORY.md
      - title: "feat: <description>"
      - labels as derived above
